@@ -7,9 +7,9 @@ import { Spinner } from "./Spinner";
 
 const spinner: Spinner = new Spinner('download packages ')
 
-const packagesPath: string = path.resolve(__dirname, 'packages');
+const packagesPath: string = path.resolve(process.cwd(), 'packages');
 
-const filePath: string = path.resolve(__dirname, 'package-lock.json');
+const filePath: string = path.resolve(process.cwd(), 'package-lock.json');
 
 export function install () {
   jsonfile.readFile(filePath, async function (err, jsonData: LockData) {
@@ -56,7 +56,7 @@ export function install () {
       process.exit(0)
     } else {
       spinner.stop()
-      spinner.fail('Failed to read file package-lock.json')
+      spinner.fail('Failed to read file package-lock.json in ' + process.cwd())
       process.exit(0)
     }
   })

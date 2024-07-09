@@ -1,25 +1,14 @@
 # d-npm
 
-## 安装依赖
+## 安装
 ```
-npm install
-```
-
-### 运行
-```
-npm run dev
-npm run dev:once
-```
-
-### 打包
-```
-npm run build
+npm install d-tgz -g
 ```
 
 ### 使用
-``node d-npm``
+``d-npm``
 ```
 -dist
---d-npm.js
+--d-npm2.js
 --package-lock.json
 ```

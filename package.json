@@ -1,8 +1,10 @@
 {
-  "name": "d-npm",
-  "version": "1.0.0",
+  "name": "d-tgz",
+  "version": "1.0.3",
   "description": "download tgz",
-  "main": "d-npm.js",
+  "bin": {
+    "d-tgz": "dist/main.js"
+  },
   "scripts": {
     "dev": "nodemon ./src/main.ts",
     "dev:once": "ts-node ./src/main.ts",
@@ -17,6 +19,7 @@
     "download tgz",
     "npm"
   ],
+  "files": ["dist", "README.md"],
   "author": "fuchangyu",
   "license": "MIT",
   "dependencies": {
