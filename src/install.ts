@@ -5,13 +5,15 @@ import fs from 'fs';
 import axios from 'axios';
 import { Spinner } from "./Spinner";
 
-const spinner: Spinner = new Spinner('download packages ')
+const spinner: Spinner = new Spinner()
 
 const packagesPath: string = path.resolve(process.cwd(), 'packages');
 
 const filePath: string = path.resolve(process.cwd(), 'package-lock.json');
 
 export function install () {
+  spinner.start('download packages ')
+
   jsonfile.readFile(filePath, async function (err, jsonData: LockData) {
     if (!err) {
 

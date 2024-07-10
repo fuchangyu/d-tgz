@@ -1,9 +1,17 @@
 # d-npm
 
-## 使用
+## 安装
 ```
 npm install d-tgz -g
+```
+## 通过目录下的package-lock下载tgz文件
+```
+d-tgz d 
 
-npx d-npm | d-npm // 下载运行目录下的package-lock中的tgz包；Download the tgz package from package-lock in the current directory
+d-tgz download
+
+d-tgz i
+
+d-tgz install
 
 ```

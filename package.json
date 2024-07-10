@@ -1,14 +1,13 @@
 {
   "name": "d-tgz",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "download tgz",
   "bin": {
-    "d-tgz": "dist/main.js"
+    "d-tgz": "dist/d-tgz.js"
   },
   "scripts": {
-    "dev": "nodemon ./src/main.ts",
-    "dev:once": "ts-node ./src/main.ts",
-    "build": "npx webpack"
+    "dev": "ts-node src/d-tgz.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,13 +16,19 @@
   "keywords": [
     "tgz",
     "download tgz",
-    "npm"
+    "npm",
+    "package",
+    "package-lock"
   ],
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "author": "fuchangyu",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
+    "commander": "^12.1.0",
     "download": "^8.0.0",
     "jsonfile": "^6.1.0",
     "ora": "^5.4.1"
@@ -33,11 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.57.0",
-    "minimist": "^1.2.6",
-    "nodemon": "^2.0.15",
-    "ts-loader": "^9.4.4",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.3",
-    "webpack-cli": "^4.9.2"
+    "typescript": "^4.6.3"
   }
 }

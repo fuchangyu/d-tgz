@@ -5,9 +5,8 @@ export class Spinner {
   private readonly ora: ora.Ora
   private beingText: string | null = null
 
-  constructor (text: string) {
-    this.ora = ora(text).start()
-    this.beingText = text
+  constructor () {
+    this.ora = ora()
   }
 
   public start (text: string): Spinner {
