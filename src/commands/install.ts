@@ -1,64 +1,66 @@
-import download from 'download';
 import jsonfile from 'jsonfile';
-import path from 'path';
-import fs from 'fs';
-import axios from 'axios';
-import { Spinner } from "./Spinner";
+import { Spinner } from "../utils/Spinner";
+import { PACKAGE_LOCK_PATH } from "../global";
+import { Download } from "../utils/Download";
 
 const spinner: Spinner = new Spinner()
 
-const packagesPath: string = path.resolve(process.cwd(), 'packages');
-
-const filePath: string = path.resolve(process.cwd(), 'package-lock.json');
+const download = new Download(10)
 
 export function install () {
   spinner.start('download packages ')
 
-  jsonfile.readFile(filePath, async function (err, jsonData: LockData) {
+  jsonfile.readFile(PACKAGE_LOCK_PATH, async function (err, jsonData: LockData) {
     if (!err) {
 
       const packages = parseLock(jsonData)
 
-      spinner.info(`总共${ packages.length }个依赖`);
+      // spinner.info(`总共${ packages.length }个依赖`);
 
       let length = packages.length
 
-      let now: DownloadInfo
+      const date = Date.now()
 
-      const interval = setInterval(() => {
-        if (now) {
-          spinner.start(`downloading 剩余${ length }：${ now.package } ${ Date.now() - now.time }ms`)
-        }
-      }, 100)
+      const failures = []
 
-      for (let index in packages) {
-        const p = packages[index]
-        now = { package: p.path + '@' + p.v, time: Date.now() }
-        try {
-
-          await download(p.resolved, packagesPath + '/' + p.path);
-
-          const res = await axios.get(p.resolved.split('/-/')[0])
-
-          fs.writeFileSync(packagesPath + '/' + p.path + '/package.json', JSON.stringify(res.data))
-
-          spinner.succeed(now.package)
-
-        } catch (e) {
-          console.warn(e)
-          spinner.fail(now.package)
-        } finally {
+      packages.forEach((p) => {
+        download.downPackage(p).then(() => {
+          // spinner.succeed(p.path + '@' + p.v)
           length--
-        }
-      }
+        }).catch(() => {
+          failures.push(p)
+          length--
+        })
+      })
 
-      clearInterval(interval)
-      spinner.stop()
-      spinner.succeed('done！')
-      process.exit(0)
+      const points: string[] = ['', '.', '.', '.', '..', '..', '..', '...', '...', '...']
+
+      let i = 0
+      setInterval(() => {
+        if (length) {
+          spinner.start(`下载中${points[i]}
+  总数：${ packages.length }
+  剩余: ${ length }  
+  失败: ${ failures.length }  
+  耗时: ${ (Date.now() - date) / 1000 }s`)
+          if (i >= points.length - 1) {
+            i = 0
+          } else {
+            i ++
+          }
+        } else {
+          spinner.stop()
+          if (failures.length) {
+            failures.forEach((f) => spinner.fail(f.path + '@' + f.v))
+          } else {
+            spinner.succeed('完成')
+          }
+          process.exit(0)
+        }
+      }, 200)
     } else {
       spinner.stop()
-      spinner.fail('Failed to read file package-lock.json in ' + process.cwd())
+      spinner.fail(`没有在路径 ${ process.cwd() } 下读取到 package-lock.json`)
       process.exit(0)
     }
   })
@@ -106,14 +108,9 @@ interface LockData {
   dependencies: Record<string, any>
 }
 
-interface PackageItem {
+export interface PackageItem {
   name: string,
   resolved: string,
   path: string,
   v: string
-}
-
-interface DownloadInfo {
-  package: string,
-  time: number
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { install } from "./install";
+import { install } from "./commands/install";
 import { program } from "commander";
 import fs from "fs";
 import path from "path";
