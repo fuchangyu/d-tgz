@@ -32,15 +32,15 @@ export class Download {
           this.downloadingNum -= 1
 
           if (this.downloadPool.length) {
-            this.concurrencyNum += 1
+            this.downloadingNum += 1
 
             this.downloadPool.shift()()
           }
         }
       }
 
-      if (this.downloadingNum < 10) {
-        this.concurrencyNum += 1
+      if (this.downloadingNum < this.concurrencyNum) {
+        this.downloadingNum += 1
 
         action()
       } else {
