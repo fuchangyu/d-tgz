@@ -22,19 +22,23 @@ export async function installPackageName (name: string) {
 
   spinner.start(`正在解析${ name }的依赖`)
 
-  try {
-    cmd.runSync('cd ' + TEMP_PATH + '&&' + `npm install ${ name } --package-lock-only`)
-  } catch {
-    spinner.fail(`正在解析${ name }的依赖失败！`)
+
+  const run = cmd.runSync('cd ' + TEMP_PATH + '&&' + `npm install ${ name } --package-lock-only`)
+
+  if (run.err) {
+    fs.removeSync(TEMP_PATH)
+    spinner.stop()
+    spinner.fail(`解析${ name }的依赖失败！`)
+    process.exit(0)
   }
 
   const context: LockData = await readLock(TEMP_PACKAGE_LOCK_PATH)
 
+  fs.removeSync(TEMP_PATH)
+
   const packages = parseLock(context)
 
   await downloadPackages(packages)
-
-  fs.removeSync(TEMP_PATH)
 
   process.exit(0)
 }

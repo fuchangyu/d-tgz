@@ -13,7 +13,7 @@ const commands = [
     args: ['install', 'i', 'd', 'download'],
     description: 'To download the tgz package. Default use package-lock.json',
     options: [
-      { flags: '-p， --package', description: 'd-tgz i -p;To download the tgz package. use package.json' },
+      { flags: '-p, --package', description: 'd-tgz i -p;To download the tgz package. use package.json' },
       { flags: '<name>', description: 'd-tgz i <name>;To download the tgz package. use package name' },
     ],
     action: install
