@@ -2,24 +2,40 @@
 <!-- TOC -->
 * [d-tgz](#d-tgz)
   * [说明](#说明)
-  * [基本用法](#基本用法)
+  * [使用](#使用)
+    * [1、通过npm全局安装d-tgz。](#1通过npm全局安装d-tgz)
+    * [2、使用命令下载依赖包。](#2使用命令下载依赖包)
   * [命令](#命令)
+    * [1、根据目录下的package-lock.json下载依赖包](#1根据目录下的package-lockjson下载依赖包)
+    * [2、根据目录下的package.json下载依赖包](#2根据目录下的packagejson下载依赖包)
+    * [3、指定要下载的依赖包](#3指定要下载的依赖包)
 <!-- TOC -->
 
 
 ## 说明
-通过解析package-lock.json，将依赖包的tgz文件及其package.json下载到对应的目录中。
-## 基本用法
+下载依赖包的tgz文件及其package.json到对应的目录中。
+## 使用
+### 1、通过npm全局安装d-tgz。
 ```
 npm install d-tgz -g
-
+```
+### 2、使用命令下载依赖包。
+```                               
 d-tgz d 
 ```
 
 ## 命令
 
-| 命令                              | 作用                             |
-|---------------------------------|--------------------------------|
-| d-tgz <download, d, install, i> | 读取目录下的 package-lock.json 下载依赖项 |
-| d-tgz <-h, --help >             | 帮助                             |
-| d-tgz <-V, --version>           | 版本信息                           |
+### 1、根据目录下的package-lock.json下载依赖包
+````
+d-tgz <download | d | install | i>
+````
+### 2、根据目录下的package.json下载依赖包
+````
+d-tgz <download | d | install | i> <-p | --package>
+````
+
+### 3、指定要下载的依赖包
+````
+d-tgz <download | d | install | i> <vue | vue@0.0.0>
+````

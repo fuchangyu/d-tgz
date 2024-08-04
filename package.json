@@ -6,7 +6,11 @@
     "d-tgz": "dist/d-tgz.js"
   },
   "scripts": {
-    "dev": "ts-node src/d-tgz.ts i",
+    "dev:install": "ts-node src/d-tgz.ts install",
+    "dev:p": "ts-node src/d-tgz.ts install -p",
+    "dev:package": "ts-node src/d-tgz.ts install --package",
+    "dev:name": "ts-node src/d-tgz.ts install vue@3.4.1",
+    "dev:h": "ts-node src/d-tgz.ts",
     "test": "ts-node src/test.ts",
     "build": "tsc"
   },
@@ -30,10 +34,8 @@
   "dependencies": {
     "axios": "^0.27.2",
     "commander": "^12.1.0",
-    "d-tgz": "^1.1.0",
     "download": "^8.0.0",
     "fs-extra": "^11.2.0",
-    "jsonfile": "^6.1.0",
     "node-cmd": "^5.0.0",
     "ora": "^5.4.1"
   },

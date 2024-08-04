@@ -1,8 +1,8 @@
-import { PackageItem } from "../commands/install";
 import { FOLDER_PATH } from "../global";
 import axios from "axios";
 import fs from "fs";
 import download from 'download'
+import { PackageItem } from "../types";
 
 export class Download {
   private concurrencyNum: number
@@ -49,3 +49,4 @@ export class Download {
     })
   }
 }
+
