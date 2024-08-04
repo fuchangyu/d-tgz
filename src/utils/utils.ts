@@ -95,6 +95,7 @@ export function downloadPackages (packages: PackageItem[]) {
       } else {
         spinner.stop()
         if (failures.length) {
+          spinner.fail(failures.length + '个依赖下载失败')
           failures.forEach((f) => spinner.fail(f.path + '@' + f.v))
         } else {
           spinner.succeed('完成')
