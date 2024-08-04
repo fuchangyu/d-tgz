@@ -25,8 +25,7 @@ export class Download {
           fs.writeFileSync(FOLDER_PATH + '/' + info.path + '/package.json', JSON.stringify(res.data))
 
           resolve(info)
-        } catch (e) {
-          console.warn(e)
+        } catch {
           reject(info)
         } finally {
           this.downloadingNum -= 1
