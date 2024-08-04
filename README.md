@@ -35,7 +35,7 @@ d-tgz <download | d | install | i>
 d-tgz <download | d | install | i> <-p | --package>
 ````
 
-### 3、指定要下载的依赖包
+### 3、指定要下载的依赖包（以vue为例）
 ````
 d-tgz <download | d | install | i> <vue | vue@0.0.0>
 ````
