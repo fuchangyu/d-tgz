@@ -24,23 +24,23 @@ export async function installPackageFile () {
 
   spinner.start('正在解析package.json')
 
-  const run = cmd.runSync('cd ' + TEMP_PATH + '&&' +'npm install --package-lock-only')
+  cmd.run('cd ' + TEMP_PATH + '&&' +'npm install --package-lock-only', async (error) => {
+    if (error) {
+      fs.removeSync(TEMP_PATH)
+      spinner.stop()
+      spinner.fail(`解析package.json失败！`)
+      process.exit(0)
+    }
 
-  if (run.err) {
+    const context: LockData = await readLock(TEMP_PACKAGE_LOCK_PATH)
+
     fs.removeSync(TEMP_PATH)
-    spinner.stop()
-    spinner.fail(`解析package.json失败！`)
+
+    const packages = parseLock(context)
+
+    await downloadPackages(packages)
+
     process.exit(0)
-  }
-
-  const context: LockData = await readLock(TEMP_PACKAGE_LOCK_PATH)
-
-  fs.removeSync(TEMP_PATH)
-
-  const packages = parseLock(context)
-
-  await downloadPackages(packages)
-
-  process.exit(0)
+  })
 }
 
