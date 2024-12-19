@@ -55,7 +55,7 @@ Downloading tgz Files of Dependencies and Their package.json into Corresponding 
   * [Commands](#commands)
     * [1、Download Dependencies Based on the package-lock.json in the Directory](#1download-dependencies-based-on-the-package-lockjson-in-the-directory)
     * [2、Download Dependencies Based on the package.json in the Directory](#2download-dependencies-based-on-the-packagejson-in-the-directory)
-    * [3、Specify a Dependency to Download (e.g., vue)](#3specify-a-dependency-to-download-eg-vue)
+    * [3、Specify a Dependency to Download (e.g. vue)](#3specify-a-dependency-to-download-eg-vue)
 <!-- TOC -->
 
 
