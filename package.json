@@ -11,7 +11,7 @@
     "dev:package": "ts-node src/d-tgz.ts install --package",
     "dev:name": "ts-node src/d-tgz.ts install vue@3.4.1",
     "dev:h": "ts-node src/d-tgz.ts",
-    "test": "ts-node src/test.ts",
+    "test": "ts-node src/i18n.ts",
     "build": "tsc"
   },
   "repository": {
@@ -36,11 +36,14 @@
     "commander": "^12.1.0",
     "download": "^8.0.0",
     "fs-extra": "^11.2.0",
+    "i18n": "^0.15.1",
     "node-cmd": "^5.0.0",
-    "ora": "^5.4.1"
+    "ora": "^5.4.1",
+    "os-locale": "^6.0.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
+    "@types/i18n": "^0.13.12",
     "@types/node": "^17.0.23",
     "@types/node-cmd": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",

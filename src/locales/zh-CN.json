@@ -1,0 +1,15 @@
+{
+	"readPackageFileFailed": "读取package.json文件失败",
+	"parsingPackageFile": "正在解析package.json",
+	"parsePackageFileFailed": "解析package.json文件失败",
+	"parsingPackage": "正在解析包: ",
+	"parsePackageFailed": "解析包失败: ",
+	"readPackageLockFileFailed": "读取package-lock.json文件失败",
+	"downloading": "下载中",
+	"amount": "总数: ",
+	"residue": "剩余: ",
+	"failed": "失败: ",
+	"time": "耗时: ",
+	"failedDownloadPackage": "依赖下载失败的数量: ",
+	"succeed": "完成"
+}

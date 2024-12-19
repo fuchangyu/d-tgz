@@ -1,0 +1,15 @@
+{
+	"readPackageFileFailed": "Failed to read package.json file",
+	"parsingPackageFile": "Parsing package.json",
+	"parsePackageFileFailed": "Parsing the package.json file failed",
+	"parsingPackage": "Parsing package: ",
+	"parsePackageFailed": "Package parse failed: ",
+	"readPackageLockFileFailed": "Failed to read package-lock.json file",
+	"downloading": "downloading",
+	"amount": "amount: ",
+	"residue": "residue: ",
+	"failed": "failed: ",
+	"time": "time: ",
+	"failedDownloadPackage": "Number of package download failures: ",
+	"succeed": "succeed"
+}

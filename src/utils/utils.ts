@@ -2,6 +2,7 @@ import { Download } from "./Download";
 import { Spinner } from "./Spinner";
 import { LockData, PackageItem } from "../types";
 import fs from "fs-extra";
+import { i18n } from '../i18n';
 
 export const spinner: Spinner = new Spinner()
 
@@ -51,7 +52,7 @@ export function readLock (path: string): Promise<LockData> {
       const context = fs.readJSONSync(path)
       resolve(context)
     } catch {
-      spinner.fail('读取package-lock文件失败！')
+      spinner.fail(i18n.__('readPackageLockFileFailed'))
       process.exit(0)
     }
   })
@@ -82,11 +83,11 @@ export function downloadPackages (packages: PackageItem[]) {
 
     setInterval(() => {
       if (length) {
-        spinner.start(`下载中${ points[i] }
-  总数：${ packages.length }
-  剩余: ${ length }  
-  失败: ${ failures.length }  
-  耗时: ${ (Date.now() - date) / 1000 }s`)
+        spinner.start(`${i18n.__('downloading') + points[i] }
+  ${i18n.__('amount') + packages.length }
+  ${i18n.__('residue') +  length }  
+  ${i18n.__('failed') +  failures.length }  
+  ${i18n.__('time') +  (Date.now() - date) / 1000 }s`)
         if (i >= points.length - 1) {
           i = 0
         } else {
@@ -95,10 +96,10 @@ export function downloadPackages (packages: PackageItem[]) {
       } else {
         spinner.stop()
         if (failures.length) {
-          spinner.fail(failures.length + '个依赖下载失败')
+          spinner.fail(i18n.__('readPackageFileFailed') + failures.length)
           failures.forEach((f) => spinner.fail(f.path + '@' + f.v))
         } else {
-          spinner.succeed('完成')
+          spinner.succeed(i18n.__('succeed'))
         }
         resolve(true)
       }
