@@ -14,7 +14,7 @@ export function parseLock (lockData: LockData): PackageItem[] {
 
   if (lockData.packages) {
     for (let key in lockData.packages) {
-      const path: string = key.replace('node_modules/', '')
+      const path: string = key.split('node_modules/').at(-1)
       if (path) {
         const item = lockData.packages[key]
         packages.push({
